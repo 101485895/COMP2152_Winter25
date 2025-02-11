@@ -142,6 +142,21 @@ def save_game(winner, hero_name="", num_starts=0):
     with open("save.txt", "a") as file:
         if winner == "Hero":
             file.write(f"Hero {hero_name} has killed the monster with {num_starts} stars\n")
+        elif winner == "Monster":
+            file.write(f"Monster killed the {hero_name}\n")
+
 # Lab 06 - Question 5a
+def load_game():
+    try:
+        with open("save", "r") as file:
+            print("    |    Loading from saved file...")
+            lines = file.readlines()
+            if lines:
+                last_line = lines[-1].strip()
+                print(last_line)
+                return last_line
+    except FileNotFoundError:
+        print("No previous game found. Starting fresh")
+        return None
 
 # Lab 06 - Question 5b
